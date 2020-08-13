@@ -7,3 +7,6 @@ module.exports = (robot) ->
 
   robot.hear /こんばんは/i, (res) ->
     res.reply "こんばんは"
+    
+  robot.hear /test/i, (res) ->
+    res.reply "test"
