@@ -20,8 +20,7 @@ module.exports = (robot) ->
       return {
 
         issues: () ->
-          issue = body.issues
-          console.log body
+          issue = body.issue
           return  """
                   #{issue.url}
                   <@#{issue.user.login}>さんがIssueを#{action}。
