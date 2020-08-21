@@ -94,6 +94,7 @@ module.exports = (robot) ->
 
       # 2. 認証する
       checkAuth = isCorrectSignature config
+      console.log "checkAuth : #{checkAuth}"
       unless checkAuth?
         sendErrorResponse()("認証エラー")
 
