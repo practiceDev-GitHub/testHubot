@@ -20,7 +20,7 @@ module.exports = (robot) ->
       return {
 
         issues: () ->
-          issues = body.issues
+          issue = body.issues
 
           return  """
                   #{issue.url}
