@@ -1,4 +1,3 @@
-
 module.exports = (robot) ->
 
   crypto = require 'crypto'
@@ -8,7 +7,7 @@ module.exports = (robot) ->
 
     #===============slackのチャンネル=============================
 
-    target_chanels = "#テス"
+    target_chanel = "#テス"
 
     #===============eventに対応するhanler=============================
 
@@ -21,13 +20,26 @@ module.exports = (robot) ->
 
         issues: () ->
           issue = body.issue
+
+          #sendResponseのmessageとなります。
           return  """
                   #{issue.url}
                   <@#{issue.user.login}>さんがIssueを#{action}。
                   """
       }
 
-    #==================================================
+    #==============レスポンス========================
+
+    sendErrorResponse = (e = null) ->
+      console.log e
+      (message = "エラーです") ->
+        res.status(400).send message
+
+
+    sendResponse = (message) ->
+      robot.messageRoom target_chanel, message
+      res.status(201).send
+
     #==================================================
     #==================================================
     #==================================================
@@ -74,16 +86,6 @@ module.exports = (robot) ->
       generated_signature = [digest_method, hashed_data].join '='
 
       return config.signature() is generated_signature
-
-    sendErrorResponse = (e = null) ->
-      console.log e
-      (message = "エラーです") ->
-        res.status(400).send message
-
-
-    sendResponse = (message) ->
-      robot.messageRoom target_chanels, message
-      res.status(201).send
 
     #=================メインロジック==========================
     try
