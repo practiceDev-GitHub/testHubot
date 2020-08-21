@@ -21,7 +21,7 @@ module.exports = (robot) ->
 
         issues: () ->
           issue = body.issues
-          console.log issue
+          console.log body
           return  """
                   #{issue.url}
                   <@#{issue.user.login}>さんがIssueを#{action}。
